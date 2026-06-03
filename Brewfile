@@ -9,12 +9,13 @@ brew "fzf"
 brew "node"                       # nvim-treesitter / some LSPs need it (Ubuntu README installs node)
 brew "tree-sitter"
 
+tap "nikitabobko/tap"             # AeroSpace lives in this tap, not homebrew/cask
 cask "alacritty"
 cask "aerospace"
 cask "firefox"
 cask "slack"
 cask "proton-pass"
-cask "sioyek"
+cask "skim"                       # VimTeX PDF viewer; native arm64 w/ SyncTeX (sioyek is deprecated + Intel-only)
 cask "mactex"                     # ~5GB; needs sudo/GUI; this is the slow one
 cask "font-jetbrains-mono-nerd-font"   # matches alacritty.toml (NOT font-hack)
 # Optional (uncomment if wanted): cask "maccy"  (clipboard history)

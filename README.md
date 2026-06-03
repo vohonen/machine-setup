@@ -22,7 +22,7 @@ apt-packages.txt        Ubuntu packages (apt)
 install/macos.sh        brew bundle, stow, submodule, keylayout, defaults, git identity
 install/linux.sh        apt, stow, submodule, xkb keyboard, git identity
 stow/common/.config/nvim  git submodule -> vohonen/nvim-config
-stow/macos/             .zshrc .zprofile .zsh_aliases .config/{aerospace,sioyek}
+stow/macos/             .zshrc .zprofile .zsh_aliases .config/aerospace
 stow/linux/             .bashrc .bash_aliases
 macos/                  Finnish-TeX.keylayout, gen_keylayout.py, macos-defaults.sh
 linux/                  fi (xkb), setup-keyboard.sh
@@ -38,6 +38,10 @@ The installer prints these (they need a password or a GUI):
 - **macOS keyboard:** Settings > Keyboard > Input Sources: add **Finnish TeX**, set primary (log out/in).
   Settings > Keyboard > Keyboard Shortcuts > Modifier Keys: Caps Lock -> Escape.
 - **AeroSpace:** grant Accessibility permission on first launch.
+- **Skim (VimTeX inverse search):** Skim > Settings > Sync: enable "Check for file changes";
+  set Preset = Custom, Command = `nvim`,
+  Arguments = `--headless -c "VimtexInverseSearch %line '%file'"`. (Forward search needs no config —
+  VimTeX calls Skim's `displayline`.)
 - **Mail:** Settings > Internet Accounts > Google -> enable Mail; Mail > Settings > General > default reader.
 
 ## Editing & syncing configs

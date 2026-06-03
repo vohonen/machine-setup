@@ -46,5 +46,7 @@ MANUAL STEPS (cannot be scripted reliably):
  - Settings > Keyboard > Input Sources: add "Finnish TeX", set as primary (after log out/in).
  - Settings > Keyboard > Keyboard Shortcuts > Modifier Keys: Caps Lock -> Escape.
  - Grant AeroSpace Accessibility permission on first launch.
+ - Skim (VimTeX inverse search): Skim > Settings > Sync: enable "Check for file changes";
+     Preset=Custom, Command=nvim, Arguments=--headless -c "VimtexInverseSearch %line '%file'".
  - Settings > Internet Accounts: add Google -> enable Mail; Mail > Settings > General > default reader.
 EOF
