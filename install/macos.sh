@@ -11,6 +11,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # 2. packages
 brew bundle --file=Brewfile
 
+# 2a. Alacritty's cask build isn't vendor-notarized; clear the quarantine flag so Gatekeeper
+#     doesn't block first launch ("cannot verify ... free of malware").
+[ -d /Applications/Alacritty.app ] && xattr -dr com.apple.quarantine /Applications/Alacritty.app || true
+
 # 3. dotfiles (idempotent symlinks)
 brew list stow >/dev/null 2>&1 || brew install stow
 # back up a pre-existing real ~/.zprofile so stow can own it (fresh Macs ship one)
