@@ -1,0 +1,15 @@
+# listing
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# dir movement
+alias cd..='cd ..'
+alias cdb='cd ..; cd ..'
+mkcd () { mkdir -p -- "$1" && cd -P -- "$1"; }
+
+# misc (note: NO `alias open='xdg-open'` - macOS `open` is native and wanted)
+alias so='source'
+alias fl='file `ls`'
+alias dt='date +"%T"'
+alias filecount='ls -l | grep -v ^d | grep -v ^t | grep -v ^l | wc -l'

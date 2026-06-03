@@ -1,0 +1,3 @@
+[submodule "stow/common/.config/nvim"]
+	path = stow/common/.config/nvim
+	url = https://github.com/vohonen/nvim-config

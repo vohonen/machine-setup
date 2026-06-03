@@ -1,0 +1,10 @@
+git
+stow
+neovim
+ripgrep
+fd-find
+fzf
+nodejs
+firefox
+zathura
+alacritty

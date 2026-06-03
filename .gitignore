@@ -1,0 +1,14 @@
+# never commit secrets / per-machine keys
+.ssh/
+id_ed25519*
+*.pem
+*.key
+
+# stow backups
+*.pre-stow
+
+# OS cruft
+.DS_Store
+
+# Claude Code session-local tooling config
+.claude/
