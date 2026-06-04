@@ -1,21 +1,91 @@
 start-at-login = true
 
+[gaps]
+inner.horizontal = 0
+inner.vertical = 0
+outer.left = 0
+outer.right = 0
+outer.top = 0
+outer.bottom = 0
+
 [mode.main.binding]
+# Launchers (also act as "jump to that app's workspace")
 alt-t = 'exec-and-forget open -a Alacritty'
 alt-b = 'exec-and-forget open -a Firefox'
 alt-s = 'exec-and-forget open -a Slack'
 alt-m = 'exec-and-forget open -a Mail'
 
+# Focus / move within a workspace
 alt-h = 'focus left'
 alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
-
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
+# Workspaces
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-tab = 'workspace-back-and-forth'
+
+# Move the whole current workspace to another monitor
+alt-shift-period = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-comma  = 'move-workspace-to-monitor --wrap-around prev'
+
+# Layout + resize (Finnish-safe mnemonics)
+alt-v = 'layout tiles horizontal vertical'      # Vary split orientation
+alt-a = 'layout accordion horizontal vertical'  # Accordion
+alt-f = 'fullscreen'
+alt-shift-space = 'layout floating tiling'
+alt-comma  = 'resize smart -50'   # < smaller
+alt-period = 'resize smart +50'   # > bigger
+alt-0 = 'balance-sizes'
+
+# Service mode entry
+alt-shift-s = 'mode service'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']     # reset messy layout
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+h = ['join-with left', 'mode main']
+j = ['join-with down', 'mode main']
+k = ['join-with up', 'mode main']
+l = ['join-with right', 'mode main']
+
+# Float transient system windows
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
 run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+# Pin apps to home workspaces (makes launcher keys double as navigation)
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace 4'
