@@ -52,5 +52,10 @@ MANUAL STEPS (cannot be scripted reliably):
  - Grant AeroSpace Accessibility permission on first launch.
  - Skim (VimTeX inverse search): Skim > Settings > Sync: enable "Check for file changes";
      Preset=Custom, Command=nvim, Arguments=--headless -c "VimtexInverseSearch %line '%file'".
- - Settings > Internet Accounts: add Google -> enable Mail; Mail > Settings > General > default reader.
+ - Settings > Internet Accounts: add work Google (longtermrisk.org) -> enable Mail + Calendars;
+     Mail > Settings > General > default reader.
+ - Calendar: work Google Calendar is the source of truth. Secondary calendar "Personal" holds
+     personal events (Proton Calendar is read-only ICS export only -> too stale for booking).
+     Booking link = Google appointment schedule, conflict-check primary + Personal.
+ - Personal Proton mail (free plan, no Bridge): use Proton web/desktop app, not Apple Mail.
 EOF

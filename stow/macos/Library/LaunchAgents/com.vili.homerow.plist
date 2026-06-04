@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.vili.homerow</string>
+	<!-- open -g: don't bring to foreground; -j: launch hidden.
+	     A plain Login Item launches Homerow like a normal app, which opens its
+	     settings window every login — this launches it silently instead. -->
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/open</string>
+		<string>-g</string>
+		<string>-j</string>
+		<string>-a</string>
+		<string>Homerow</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+</dict>
+</plist>
