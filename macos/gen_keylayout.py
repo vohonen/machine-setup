@@ -61,11 +61,19 @@ M = {
 }
 
 # control / whitespace / keypad keys -- identical in every keyMap
+# (standard Apple layouts map all of these; omitting Esc 53 made terminals
+#  swallow the key entirely in legacy keyboard mode)
 CTRL = {
  36:'\u000D', 48:'\u0009', 49:' ', 76:'\u000D', 117:'\u007F',
+ 51:'\u0008', 53:'\u001B', 71:'\u001B',                          # Backspace, Esc, Clear
+ 114:'\u0005', 115:'\u0001', 116:'\u000B', 119:'\u0004', 121:'\u000C',  # Help Home PgUp End PgDn
+ 123:'\u001C', 124:'\u001D', 125:'\u001F', 126:'\u001E',          # Left Right Down Up
  65:'.', 67:'*', 69:'+', 75:'/', 78:'-', 81:'=',
  82:'0',83:'1',84:'2',85:'3',86:'4',87:'5',88:'6',89:'7',91:'8',92:'9',
 }
+# function keys F1-F16: Apple layouts map them all to 0x10
+CTRL.update({c: '\u0010' for c in
+             (122,120,99,118,96,97,98,100,101,109,103,111,105,107,113,106)})
 
 def ent(ch):
     return "&#x%04X;" % ord(ch)

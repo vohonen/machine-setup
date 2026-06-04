@@ -26,7 +26,8 @@ New windows of these apps always teleport to their home workspace (`on-window-de
 | `Alt+T` | Alacritty (Terminal) | 1 |
 | `Alt+B` | Firefox (Browser) | 2 |
 | `Alt+S` | Slack | 3 |
-| `Alt+M` | Mail | 4 |
+| `Alt+E` | Mail (E-mail) | 4 |
+| `Alt+M` | Spotify (Music) | 5 |
 
 ### Navigation
 
@@ -34,8 +35,8 @@ New windows of these apps always teleport to their home workspace (`on-window-de
 |---|---|
 | `Alt+H/J/K/L` | focus window left / down / up / right (within the workspace) |
 | `Alt+Shift+H/J/K/L` | drag the focused window in that direction |
-| `Alt+1…5` | go to workspace N (wherever it currently lives) |
-| `Alt+Shift+1…5` | throw the focused window to workspace N |
+| `Alt+1…9` | go to workspace N (wherever it currently lives) |
+| `Alt+Shift+1…9` | throw the focused window to workspace N |
 | `Alt+Tab` | bounce between the last two workspaces (editor ↔ browser toggle) |
 | `Alt+Shift+.` / `Alt+Shift+,` | move the **whole current workspace** to the next / prev monitor |
 
@@ -62,6 +63,31 @@ Enter with `Alt+Shift+S`, press one key, auto-returns to main mode:
 | `Backspace` | close every window except the current one |
 | `H/J/K/L` | merge focused window into the neighbor's container |
 
+### Recipe — three terminals: swap the ends, then stack two on the left
+
+Starting point: three terminals `A B C` (left → right), e.g. in a horizontal accordion.
+Goal: swap A and C, then put C and B stacked vertically in the left half with A taking the
+full-height right pane.
+
+```
+Alt+V              # accordion → tiles, so all three are visible side by side
+Alt+H (repeat)     # focus the leftmost terminal (A)
+Alt+Shift+L ×2     # carry A past the center to the far right     → B C A
+Alt+H              # focus the center window (C, the old rightmost)
+Alt+Shift+H       # push C to the far left                        → C B A   (swap done)
+Alt+L              # focus the center window (B)
+Alt+Shift+S, H     # service mode: join-with left → C and B stack vertically
+                   # in the left half; A grows to the full right half
+Alt+0              # (optional) equalize sizes
+```
+
+Why it works: `move` (`Alt+Shift+H/L`) *swaps* the window with its neighbor, so two hops
+carry it across the row. `join-with` creates a nested container, and AeroSpace forces nested
+containers to the **opposite orientation** of their parent (default normalization) — joining
+two side-by-side windows therefore stacks them. If the pair ends up as an accordion instead
+of a visible stack, focus one of them and hit `Alt+V`. To undo the nesting: `Alt+Shift+S`,
+`R` (flatten).
+
 ### The daily loop
 
 `Alt+T` → work → `Alt+B` to look something up → `Alt+Tab` back.
@@ -82,12 +108,12 @@ Recipe — a terminal on each external monitor:
 ```
 Alt+T              # new terminal → lands on ws 1 (monitor A)
 Alt+T              # second terminal → also ws 1
-Alt+Shift+5        # throw it to ws 5
-Alt+5              # follow it
-Alt+Shift+.        # if ws 5 isn't on monitor B yet, send the workspace there
+Alt+Shift+9        # throw it to ws 9
+Alt+9              # follow it
+Alt+Shift+.        # if ws 9 isn't on monitor B yet, send the workspace there
 ```
 
-Then `Alt+1` = terminal on A, `Alt+5` = terminal on B, `Alt+Tab` bounces between them.
+Then `Alt+1` = terminal on A, `Alt+9` = terminal on B, `Alt+Tab` bounces between them.
 
 ---
 

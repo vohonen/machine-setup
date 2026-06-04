@@ -15,6 +15,7 @@ cask "alacritty"
 cask "aerospace"
 cask "firefox"
 cask "slack"
+cask "spotify"
 cask "proton-pass"
 cask "skim"                       # VimTeX PDF viewer; native arm64 w/ SyncTeX (sioyek is deprecated + Intel-only)
 cask "mactex"                     # ~5GB; needs sudo/GUI; this is the slow one
