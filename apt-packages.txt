@@ -8,3 +8,5 @@ nodejs
 firefox
 zathura
 alacritty
+xclip
+wl-clipboard
