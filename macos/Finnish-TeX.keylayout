@@ -66,7 +66,7 @@
     <key code="47" output="&#x002E;"/>
     <key code="48" output="&#x0009;"/>
     <key code="49" output="&#x0020;"/>
-    <key code="50" output="&#x00E5;"/>
+    <key code="50" output="&#x0040;"/>
     <key code="65" output="&#x002E;"/>
     <key code="67" output="&#x002A;"/>
     <key code="69" output="&#x002B;"/>
@@ -192,6 +192,7 @@
     <key code="46" output="&#x00B5;"/>
     <key code="48" output="&#x0009;"/>
     <key code="49" output="&#x0020;"/>
+    <key code="50" output="&#x00E5;"/>
     <key code="65" output="&#x002E;"/>
     <key code="67" output="&#x002A;"/>
     <key code="69" output="&#x002B;"/>

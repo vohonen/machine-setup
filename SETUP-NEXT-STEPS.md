@@ -73,8 +73,14 @@ which latexmk tlmgr        # should resolve under /Library/TeX/texbin
 
 ## 4. System Settings toggles (GUI — can't be scripted)
 
-- **Keyboard → Input Sources:** add **Finnish TeX**, set it primary → **log out and back in**.
-- **Keyboard → Keyboard Shortcuts → Modifier Keys:** Caps Lock → **Escape**.
+- **Keyboard → Input Sources:** add **Finnish TeX** — it is **NOT under Finnish**; custom layouts
+  appear under **Others** at the very bottom of the language list in the “+” dialog. Set it
+  primary → **log out and back in**.
+- **Karabiner-Elements** (`brew install --cask karabiner-elements`, needs your password): launch it
+  once and grant the driver/input-monitoring permissions it walks you through. The stowed config
+  (`~/.config/karabiner` → repo) makes **Caps Lock = Escape on tap, Control on hold** — home-row
+  Ctrl for left-hand chords. Leave **Keyboard Shortcuts → Modifier Keys** at default (do NOT also
+  set Caps→Esc there; Karabiner handles it).
 - **AeroSpace:** launch it once and grant **Accessibility** permission when prompted.
 - **Skim → Settings → Sync** (for VimTeX inverse search, PDF→source):
   - enable **"Check for file changes"**
@@ -91,11 +97,15 @@ which latexmk tlmgr        # should resolve under /Library/TeX/texbin
 
 This is the one genuinely uncertain part of the custom layout. With **Finnish TeX** active, check:
 
-- `$ \ { } ^ ~` at base/shift; `å ä ö` correct; `< > |` on the key **left of Z**;
-  `å` on the key **left of 1**; Cmd+C / Cmd+V work; Caps Lock acts as Escape.
+- `$ \ { } ^ ~` at base/shift; `ä ö` correct; `< > |` on the key **left of Z**;
+  `@` plain on the key **left of 1** (`Å` = Shift, `å` = Option there — moved because
+  AeroSpace's alt-2 binding shadows the usual Option+2 `@`); Cmd+C / Cmd+V work;
+  Caps Lock: tap = Escape, hold = Control (needs Karabiner running).
+- In nvim: `yy` then paste into another app with Cmd+V, and Cmd+C text → `p` into nvim
+  (`clipboard=unnamedplus` — plain y/d/p are the system clipboard now).
 - Hold `j`/`k` — repeat should be fast.
 
-**If `å` and the angle brackets are on the wrong keys** (the two ISO keycodes are the likely bug):
+**If `@` and the angle brackets are on the wrong keys** (the two ISO keycodes are the likely bug):
 
 ```sh
 # swap the `50:` and `10:` entries in macos/gen_keylayout.py, then:

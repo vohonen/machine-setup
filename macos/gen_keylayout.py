@@ -7,7 +7,7 @@
 # keycode: (base, shift, option, option+shift)  -- None omits that level
 M = {
  # number row
- 50: ('\u00E5','\u00C5',None,None),       # TLDE  -> å Å        (VERIFY ISO vs 10)
+ 50: ('@','\u00C5','\u00E5',None),       # TLDE  -> @ Å å      (VERIFY ISO vs 10; plain @ because AeroSpace alt-2 shadows opt+2)
  18: ('1','!',None,'\u00A1'),
  19: ('2','"','@','\u201D'),
  20: ('3','#','\u00A3','\u00BB'),

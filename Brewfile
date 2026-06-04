@@ -19,5 +19,5 @@ cask "proton-pass"
 cask "skim"                       # VimTeX PDF viewer; native arm64 w/ SyncTeX (sioyek is deprecated + Intel-only)
 cask "mactex"                     # ~5GB; needs sudo/GUI; this is the slow one
 cask "font-jetbrains-mono-nerd-font"   # matches alacritty.toml (NOT font-hack)
+cask "karabiner-elements"          # Caps Lock = Esc on tap / Ctrl on hold (config stowed; needs GUI permission grants)
 # Optional (uncomment if wanted): cask "maccy"  (clipboard history)
-# No karabiner: custom .keylayout + native Caps->Esc cover it.
