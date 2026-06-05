@@ -78,10 +78,9 @@ Everything below is GUI work — do it in order, tick as you go.
 4. **Google account re-auth.** macOS Internet Accounts occasionally drops Google auth (password
    change, security event) — Mail/Calendar silently stop syncing. If things look stale, check
    System Settings → Internet Accounts first.
-5. **Homerow check at next login** (unrelated, from the same session): no window should appear —
-   it now launches via `~/Library/LaunchAgents/com.vili.homerow.plist` (`open -gj`), the Login
-   Item is gone. If a window still shows, turn OFF "Launch at login" inside Homerow's own
-   settings (it would be double-launching).
+5. **Homerow check at next login** (unrelated, from the same session): resolved 2026-06-05 —
+   Homerow's own "Launch at login" setting starts it headless, no window. The LaunchAgent
+   workaround was unnecessary and is retired to `legacy/com.vili.homerow.plist`.
 
 ## Repo state (commit when happy)
 
