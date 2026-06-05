@@ -21,6 +21,7 @@ alt-t = 'exec-and-forget open -a Alacritty'
 alt-b = 'exec-and-forget open -a Firefox'
 alt-s = 'exec-and-forget open -a Slack'
 alt-e = 'exec-and-forget open -a Mail'
+alt-c = 'exec-and-forget open -a Calendar'
 alt-m = 'exec-and-forget open -a Spotify'
 
 # Focus / move within a workspace
@@ -109,6 +110,10 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
 run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
