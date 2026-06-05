@@ -10,7 +10,7 @@ this file just summarizes them:
 - `stow/common/.config/nvim/lua/{options,keymaps}.lua`
 
 The modifier philosophy: **Cmd = macOS GUI layer · Alt/Option = AeroSpace · Ctrl = inside the
-terminal (nvim, shell, fzf, …)**.
+terminal (nvim, shell, fzf, …) · Ctrl+Alt = system escape hatches (menu bar)**.
 
 ---
 
@@ -145,6 +145,29 @@ Karabiner must be running (it starts at login). Config is the stowed
 `~/Library/Keyboard Layouts/`, log out and back in.
 
 The login screen loads layouts only after login → the password field uses plain Finnish.
+
+---
+
+## Menu bar (auto-hidden behind sketchybar)
+
+The native macOS menu bar is auto-hidden; sketchybar is the everyday bar (workspaces +
+focused app on the left; keyboard layout / Wi-Fi / volume / battery / clock on the right).
+Three ways into the real menu bar when you need an app's menus:
+
+| Gesture | Action |
+|---|---|
+| `Ctrl+Alt+M` (= `Caps+Alt+M`) | reveal + focus the **m**enu bar — arrows/letters navigate, `Enter` runs, `Esc` (tap `Caps`) returns to your window |
+| `Ctrl+Alt+H` (= `Caps+Alt+H`) | **H**elp-menu search — fuzzy-find and run *any* menu item of the focused app |
+| mouse to the top edge | the menu bar slides over sketchybar; moves away when you leave |
+
+`Ctrl+Alt+M` is symbolic hotkey 7 in `macos/macos-defaults.sh` (the `Ctrl+F2` default is
+fine but this is comfier). `Ctrl+Alt+H` is an AeroSpace binding that AppleScript-clicks the
+real Help menu — the native "Show Help menu" hotkey is dispatched to the frontmost app and
+races the auto-hide reveal animation (worked ~1 in 10), so it's disabled (hotkey 98).
+
+Clicking the front-app item in sketchybar also triggers the `Ctrl+Alt+M` path (needs
+Accessibility permission for sketchybar). Homerow can't see sketchybar items (they expose no
+accessibility elements) — but once the menu bar is revealed, Homerow works on it normally.
 
 ---
 

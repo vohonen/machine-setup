@@ -23,6 +23,9 @@ if [ -f "$HOME/.zprofile" ] && [ ! -L "$HOME/.zprofile" ]; then
 fi
 stow -d stow -t "$HOME" common macos
 
+# 3a. sketchybar (AeroSpace workspace overview; config stowed in step 3)
+brew services start sketchybar || true
+
 # 4. nvim config (submodule, symlinked by stow in step 3)
 git submodule update --init --recursive
 

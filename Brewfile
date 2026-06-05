@@ -11,6 +11,9 @@ brew "tree-sitter-cli"            # nvim-treesitter `main` builds parsers via th
                                   # (the `tree-sitter` lib formula no longer ships the binary)
 
 tap "nikitabobko/tap"             # AeroSpace lives in this tap, not homebrew/cask
+tap "FelixKratz/formulae"         # sketchybar
+brew "sketchybar"                 # status bar: AeroSpace workspace overview (config stowed)
+cask "font-sketchybar-app-font"   # app-icon ligatures used in the workspace pills
 cask "alacritty"
 cask "aerospace"
 cask "firefox"

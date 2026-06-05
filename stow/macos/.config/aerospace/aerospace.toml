@@ -1,11 +1,18 @@
 start-at-login = true
 
+# Tell sketchybar which workspace is focused (it draws the workspace overview)
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
 [gaps]
 inner.horizontal = 0
 inner.vertical = 0
 outer.left = 0
 outer.right = 0
-outer.top = 0
+# Reserve room for sketchybar: the built-in display hosts it in the notch strip
+# (macOS keeps windows out of there), external monitors need an explicit gap.
+outer.top = [{ monitor.'built-in' = 0 }, 28]
 outer.bottom = 0
 
 [mode.main.binding]
@@ -59,6 +66,11 @@ alt-shift-space = 'layout floating tiling'
 alt-comma  = 'resize smart -50'   # < smaller
 alt-period = 'resize smart +50'   # > bigger
 alt-0 = 'balance-sizes'
+
+# Help-menu search: fuzzy-find any menu item of the focused app. Clicking the real
+# Help menu (vs the "Show Help menu" system hotkey) reveals the auto-hidden menu bar
+# reliably; falls back to menu-bar focus for apps without a Help menu (Alacritty).
+ctrl-alt-h = 'exec-and-forget ~/.config/aerospace/help-menu.sh'
 
 # Service mode entry
 alt-shift-s = 'mode service'

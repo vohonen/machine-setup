@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# SketchyBar: AeroSpace workspace overview (left) + clock/battery (right).
+# Colors match alacritty.toml (#222222 bg, #eece61 yellow accent, #D8DEE9 fg).
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+
+sketchybar --bar \
+  position=top \
+  height=28 \
+  color=0xf0222222 \
+  display=all
+
+sketchybar --default \
+  icon.font="JetBrainsMono Nerd Font:Bold:13.0" \
+  label.font="JetBrainsMono Nerd Font:Medium:12.0" \
+  icon.color=0xffd8dee9 \
+  label.color=0xffd8dee9 \
+  background.corner_radius=5 \
+  background.height=20 \
+  padding_left=3 \
+  padding_right=3
+
+# Fired by AeroSpace (exec-on-workspace-change in aerospace.toml)
+sketchybar --add event aerospace_workspace_change
+
+# One pill per workspace: number + icons of the apps living there.
+# front_app_switched keeps icons fresh after alt-shift-N moves (no ws change fires then).
+for ws in $(aerospace list-workspaces --all); do
+  sketchybar --add item "space.$ws" left \
+    --set "space.$ws" \
+      icon="$ws" \
+      icon.padding_left=8 \
+      icon.padding_right=2 \
+      label.font="sketchybar-app-font:Regular:14.0" \
+      label.padding_left=2 \
+      label.padding_right=8 \
+      label.y_offset=-1 \
+      script="$PLUGIN_DIR/aerospace.sh $ws" \
+      click_script="aerospace workspace $ws" \
+    --subscribe "space.$ws" aerospace_workspace_change front_app_switched
+done
+
+# Focused app: icon + name. Click = reveal + focus the real menu bar
+# (same as Ctrl+Alt+M; needs Accessibility permission for sketchybar to work).
+sketchybar --add item front_app left \
+  --set front_app \
+    icon.font="sketchybar-app-font:Regular:14.0" \
+    icon.padding_left=8 \
+    label.padding_right=8 \
+    background.color=0x28ffffff \
+    script="$PLUGIN_DIR/front_app.sh" \
+    click_script="osascript -e 'tell application \"System Events\" to key code 46 using {control down, option down}'" \
+  --subscribe front_app front_app_switched
+
+# Right side: the macOS menu bar is auto-hidden, so system info lives here.
+# Add order = right-to-left on screen: keyboard | wifi | volume | battery | clock.
+sketchybar --add item clock right \
+  --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" label.padding_right=8
+
+sketchybar --add item battery right \
+  --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
+sketchybar --add item volume right \
+  --set volume script="$PLUGIN_DIR/volume.sh" \
+    click_script="osascript -e 'set volume output muted (not output muted of (get volume settings))'" \
+  --subscribe volume volume_change
+
+# Icon only: connected vs not (macOS redacts the SSID from CLI tools anyway)
+sketchybar --add item wifi right \
+  --set wifi update_freq=30 label.drawing=off script="$PLUGIN_DIR/wifi.sh" \
+    click_script="open x-apple.systempreferences:com.apple.wifi-settings-extension" \
+  --subscribe wifi wifi_change system_woke
+
+sketchybar --add item keyboard right \
+  --set keyboard icon="󰌌" update_freq=10 script="$PLUGIN_DIR/keyboard.sh"
+
+sketchybar --update
