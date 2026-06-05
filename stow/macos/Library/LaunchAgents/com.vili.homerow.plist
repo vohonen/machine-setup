@@ -4,16 +4,22 @@
 <dict>
 	<key>Label</key>
 	<string>com.vili.homerow</string>
-	<!-- open -g: don't bring to foreground; -j: launch hidden.
-	     A plain Login Item launches Homerow like a normal app, which opens its
-	     settings window every login — this launches it silently instead. -->
+	<!-- Homerow ignores open's -j (launch hidden) hint and shows its settings
+	     window on every launch. So: launch it, wait for the process, then hide
+	     the app via System Events (equivalent to Cmd+H — doesn't need
+	     accessibility access). Hide twice in case the window appears late.
+	     NOTE: first login after installing this, macOS shows a one-time
+	     "wants to control System Events" prompt — click Allow. -->
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/bin/open</string>
-		<string>-g</string>
-		<string>-j</string>
-		<string>-a</string>
-		<string>Homerow</string>
+		<string>/bin/sh</string>
+		<string>-c</string>
+		<string>open -g -j -a Homerow
+i=0; until pgrep -xq Homerow || [ $i -ge 20 ]; do sleep 0.5; i=$((i+1)); done
+sleep 1
+osascript -e 'tell application "System Events" to set visible of process "Homerow" to false' || true
+sleep 2
+osascript -e 'tell application "System Events" to set visible of process "Homerow" to false' || true</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
