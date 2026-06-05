@@ -21,6 +21,18 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 98 \
   '<dict><key>enabled</key><false/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>104</integer><integer>4</integer><integer>786432</integer></array></dict></dict>'
 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
+# Clean desktop: no widgets (date/weather/photos), no icons, no click-wallpaper-to-show-desktop
+defaults write com.apple.WindowManager StandardHideWidgets -bool true
+defaults write com.apple.WindowManager StageManagerHideWidgets -bool true
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+killall WindowManager || true  # brief screen flash; restarts to pick up the above
+
+# Screenshots: save to ~/Screenshots instead of cluttering the Desktop
+mkdir -p "$HOME/Screenshots"
+defaults write com.apple.screencapture location -string "$HOME/Screenshots"
+killall SystemUIServer || true
+
 # Finder
 defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.finder ShowPathbar -bool true
