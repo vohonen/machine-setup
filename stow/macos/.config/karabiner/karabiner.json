@@ -18,6 +18,19 @@
                                 "to_if_alone": [{ "key_code": "escape" }]
                             }
                         ]
+                    },
+                    {
+                        "description": "Ctrl+Alt+P → power chooser dialog (Sleep / Shut Down)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": { "mandatory": ["control", "option"] }
+                                },
+                                "to": [{ "shell_command": "osascript ~/.config/karabiner/power-chooser.applescript" }]
+                            }
+                        ]
                     }
                 ]
             },

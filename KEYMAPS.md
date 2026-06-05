@@ -171,6 +171,21 @@ accessibility elements) — but once the menu bar is revealed, Homerow works on 
 
 ---
 
+## Power (sleep / shut down)
+
+Touch ID MacBooks have no working `Ctrl+Power` dialog (those combos need a real power/eject
+key), so a Karabiner binding recreates it:
+
+| Gesture | Action |
+|---|---|
+| `Ctrl+Alt+P` (= `Caps+Alt+P`) | **P**ower chooser list — Sleep / Restart / Shut Down: `↑/↓` select, `Enter` runs, `Esc` cancels. Sleep is the default, so `Enter` alone = instant break |
+
+The chooser lives in `stow/macos/.config/karabiner/power-chooser.applescript`. Restart and
+Shut Down are graceful (apps get asked to quit; only unsaved work prompts). Sleep is full
+system sleep — monitors go black; any key wakes.
+
+---
+
 ## Clipboard ↔ Neovim
 
 `clipboard=unnamedplus` is set, so **plain `y` / `d` / `p` are the system clipboard** — no
