@@ -6,6 +6,7 @@ brew "stow"
 brew "ripgrep"
 brew "fd"
 brew "fzf"
+brew "duti"                       # set default apps per filetype (PDF->Skim, text/code->nvim)
 brew "node"                       # nvim-treesitter / some LSPs need it (Ubuntu README installs node)
 brew "tree-sitter-cli"            # nvim-treesitter `main` builds parsers via the tree-sitter CLI
                                   # (the `tree-sitter` lib formula no longer ships the binary)

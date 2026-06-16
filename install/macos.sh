@@ -36,6 +36,9 @@ cp macos/Finnish-TeX.keylayout "$HOME/Library/Keyboard Layouts/"
 # 6. system defaults
 bash macos/macos-defaults.sh
 
+# 6a. default apps: PDF -> Skim, text/markdown/code -> Neovim (via Alacritty wrapper)
+bash macos/set-default-apps.sh
+
 # 7. git identity + aliases
 git config --global user.name  "Vili Kohonen"
 git config --global user.email "vili.kohonen@protonmail.com"
