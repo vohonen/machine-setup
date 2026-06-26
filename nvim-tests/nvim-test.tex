@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+
+\title{VimTeX smoke test}
+\author{Vili Kohonen}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Forward search}
+Put the cursor on this line and press \texttt{\textbackslash lv} (localleader-l-v) to jump to this
+spot in Skim. Compile first with \texttt{\textbackslash ll}.
+
+\section{Some maths}
+A displayed equation, so there is something to land on deep in the file:
+\begin{equation}
+  \int_{-\infty}^{\infty} e^{-x^2}\,\mathrm{d}x = \sqrt{\pi}.
+  \label{eq:gauss}
+\end{equation}
+
+Euler, for good measure: $e^{i\pi} + 1 = 0$. See Equation~\eqref{eq:gauss}.
+
+\section{Inverse search}
+In Skim, \texttt{Cmd}-click on any line of the built PDF; if inverse search is configured it should
+jump the Neovim cursor back to the matching source line here.
+
+\subsection{Filler}
+\begin{itemize}
+  \item alpha
+  \item beta
+  \item gamma
+\end{itemize}
+
+\end{document}

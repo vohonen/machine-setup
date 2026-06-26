@@ -6,6 +6,7 @@ PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 sketchybar --bar \
   position=top \
   height=28 \
+  notch_display_height=32 \
   color=0xf0222222 \
   display=all
 
