@@ -38,6 +38,11 @@ The installer prints these (they need a password or a GUI):
 - **macOS keyboard:** Settings > Keyboard > Input Sources: add **Finnish TeX**, set primary (log out/in).
   Settings > Keyboard > Keyboard Shortcuts > Modifier Keys: Caps Lock -> Escape.
 - **AeroSpace:** grant Accessibility permission on first launch.
+- **Dropbox + Full Disk Access:** modern Dropbox syncs to `~/Library/CloudStorage/Dropbox`
+  (with a `~/Dropbox` symlink to it). macOS blocks terminal apps from that File Provider path
+  until they have Full Disk Access — add **Alacritty** under Settings > Privacy & Security >
+  Full Disk Access, then **fully quit & relaunch** it (nvim launched from it inherits the grant).
+  Symptom without it: `ls ~/Dropbox` → "Operation not permitted" (the files are fine; it's TCC).
 - **Skim (VimTeX inverse search):** Skim > Settings > Sync: enable "Check for file changes";
   set Preset = Custom, Command = `nvim`,
   Arguments = `--headless -c "VimtexInverseSearch %line '%file'"`. (Forward search needs no config —

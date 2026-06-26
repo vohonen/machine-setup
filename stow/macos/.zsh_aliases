@@ -8,6 +8,13 @@ alias cd..='cd ..'
 alias cdb='cd ..; cd ..'
 mkcd () { mkdir -p -- "$1" && cd -P -- "$1"; }
 
+# productivity vault: start the day reading the reminders (Muista)
+alias start='cd ~/Dropbox/productivity-vault/; nvim reminders.md'
+
+# productivity vault: weekly review (Fri) — opens this week's file, creating it
+# from the template if missing (cp -n = no-clobber). ISO week, e.g. 2026-W26.
+alias review='cd ~/Dropbox/productivity-vault/; mkdir -p weekly; cp -n templates/weekly.md weekly/$(date +%G-W%V).md; nvim weekly/$(date +%G-W%V).md'
+
 # misc (note: NO `alias open='xdg-open'` - macOS `open` is native and wanted)
 alias so='source'
 alias fl='file `ls`'

@@ -82,6 +82,12 @@ which latexmk tlmgr        # should resolve under /Library/TeX/texbin
   Ctrl for left-hand chords. Leave **Keyboard Shortcuts → Modifier Keys** at default (do NOT also
   set Caps→Esc there; Karabiner handles it).
 - **AeroSpace:** launch it once and grant **Accessibility** permission when prompted.
+- **Dropbox → Full Disk Access for the terminal:** Dropbox syncs to
+  `~/Library/CloudStorage/Dropbox` (it creates a `~/Dropbox` symlink to it). macOS blocks
+  terminal apps from reading that File Provider path until granted Full Disk Access. Add
+  **Alacritty** under **Privacy & Security → Full Disk Access**, then **fully quit and
+  relaunch** it (a running app won't pick up the grant; nvim launched from it inherits it).
+  Symptom without it: `ls ~/Dropbox` → "Operation not permitted" even though the files are fine.
 - **Skim → Settings → Sync** (for VimTeX inverse search, PDF→source):
   - enable **"Check for file changes"**
   - **Preset:** Custom
