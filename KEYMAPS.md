@@ -35,8 +35,8 @@ New windows of these apps always teleport to their home workspace (`on-window-de
 |---|---|
 | `Alt+H/J/K/L` | focus window left / down / up / right (within the workspace) |
 | `Alt+Shift+H/J/K/L` | drag the focused window in that direction |
-| `Alt+1…9` | go to workspace N (wherever it currently lives) |
-| `Alt+Shift+1…9` | throw the focused window to workspace N |
+| `Alt+1…7` | go to workspace N (only 7 workspaces — `Alt+8/9/0` are free for typing `[ ] { }`) |
+| `Alt+Shift+1…7` | throw the focused window to workspace N |
 | `Alt+Tab` | bounce between the last two workspaces (editor ↔ browser toggle) |
 | `Alt+Shift+.` / `Alt+Shift+,` | move the **whole current workspace** to the next / prev monitor |
 
@@ -49,7 +49,6 @@ New windows of these apps always teleport to their home workspace (`on-window-de
 | `Alt+F` | **F**ullscreen the focused window |
 | `Alt+Shift+Space` | toggle float ↔ tiled |
 | `Alt+,` / `Alt+.` | shrink / grow the focused window |
-| `Alt+0` | equalize all window sizes |
 
 ### Service mode
 
@@ -59,6 +58,7 @@ Enter with `Alt+Shift+S`, press one key, auto-returns to main mode:
 |---|---|
 | `Esc` | reload AeroSpace config |
 | `R` | flatten the workspace tree (**r**eset a messy layout) |
+| `B` | **b**alance / equalize all window sizes (moved off `Alt+0`) |
 | `F` | float ↔ tiled toggle |
 | `Backspace` | close every window except the current one |
 | `H/J/K/L` | merge focused window into the neighbor's container |
@@ -78,7 +78,7 @@ Alt+Shift+H       # push C to the far left                        → C B A   (s
 Alt+L              # focus the center window (B)
 Alt+Shift+S, H     # service mode: join-with left → C and B stack vertically
                    # in the left half; A grows to the full right half
-Alt+0              # (optional) equalize sizes
+Alt+Shift+S, B     # (optional) equalize sizes (service mode)
 ```
 
 Why it works: `move` (`Alt+Shift+H/L`) *swaps* the window with its neighbor, so two hops
@@ -108,12 +108,12 @@ Recipe — a terminal on each external monitor:
 ```
 Alt+T              # new terminal → lands on ws 1 (monitor A)
 Alt+T              # second terminal → also ws 1
-Alt+Shift+9        # throw it to ws 9
-Alt+9              # follow it
-Alt+Shift+.        # if ws 9 isn't on monitor B yet, send the workspace there
+Alt+Shift+7        # throw it to ws 7
+Alt+7              # follow it
+Alt+Shift+.        # if ws 7 isn't on monitor B yet, send the workspace there
 ```
 
-Then `Alt+1` = terminal on A, `Alt+9` = terminal on B, `Alt+Tab` bounces between them.
+Then `Alt+1` = terminal on A, `Alt+7` = terminal on B, `Alt+Tab` bounces between them.
 
 ---
 
@@ -131,20 +131,40 @@ Karabiner must be running (it starts at login). Config is the stowed
 
 ### Finnish TeX layout — the moved keys
 
+Brackets sit on four adjacent number-row keys via Option:
+**`⌥8 ⌥9 ⌥0 ⌥+` = `[ ] { }`** — that's why AeroSpace uses only 7 workspaces, so `Alt+8/9/0`
+stay free for typing.
+
 | Key | Plain | Shift | Option |
 |---|---|---|---|
 | left of `1` | `@` | `Å` | `å` |
-| `+`/`?` key (right of 0) | `+` | `?` | `\` |
-| key right of that | `{` | `}` | `` ` `` |
+| `8` / `9` | `8` / `9` | `(` / `)` | `[` / `]` |
+| `0` | `0` | `=` | `{` |
+| `+`/`?` key (right of 0) | `+` | `?` | `}` |
+| key right of that (`´`) | `{` | `}` | `` ` `` |
 | right of `P` | `$` | `<` | `>` |
 | key right of that | `\` | `^` | `~` |
 | left of `Z` | `<` | `>` | `\|` |
 
-`@` was moved to a plain keypress because AeroSpace's `Alt+2` shadows the standard Finnish
-`Option+2`. To change the layout: edit `macos/gen_keylayout.py`, run it, copy the result to
-`~/Library/Keyboard Layouts/`, log out and back in.
+`{`/`}` are also still reachable on `Alt+7` and the `´` key (plain/shift); `\` lives plain on
+the key right of the `P`-row. `@` was moved to a plain keypress because AeroSpace's `Alt+2`
+shadows the standard Finnish `Option+2`.
 
-The login screen loads layouts only after login → the password field uses plain Finnish.
+**Changing the layout is the canonical way to remap keys — keep Karabiner minimal.** The
+`.keylayout` is *generated*, so edit the `M` dict in `macos/gen_keylayout.py` (do **not**
+hand-edit `Finnish-TeX.keylayout`), then:
+
+```shell
+python3 macos/gen_keylayout.py
+cp macos/Finnish-TeX.keylayout ~/"Library/Keyboard Layouts/"
+# then log out and back in (macOS caches layouts at login;
+# re-adding the input source in System Settings also forces a reload)
+```
+
+Watch for AeroSpace `Alt+<key>` bindings that would capture an `Option+key` combo before the
+layout can emit the character — that's why `balance-sizes` moved off `Alt+0` to service-mode
+`B` when `⌥0` became `{`. The login screen loads layouts only after login, so the password
+field uses plain Finnish.
 
 ---
 
