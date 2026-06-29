@@ -10,7 +10,7 @@ exec-on-workspace-change = ['/bin/bash', '-c',
 # several (e.g. many terminals in one workspace). Only the active window is bordered
 # (inactive_color is transparent). Tweak width / active_color to taste.
 after-startup-command = [
-  'exec-and-forget /opt/homebrew/bin/borders active_color=0xffd8dee9 inactive_color=0x00000000 width=5.0 style=round'
+  'exec-and-forget /opt/homebrew/bin/borders active_color=0xff14532d inactive_color=0x00000000 width=8.0 style=round'
 ]
 
 [gaps]
