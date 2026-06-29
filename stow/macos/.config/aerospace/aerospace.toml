@@ -64,7 +64,8 @@ alt-f = 'fullscreen'
 alt-shift-space = 'layout floating tiling'
 alt-comma  = 'resize smart -50'   # < smaller
 alt-period = 'resize smart +50'   # > bigger
-alt-0 = 'balance-sizes'
+# balance-sizes moved to service mode ('b'): ⌥0 now types { on the Finnish TeX layout,
+# so AeroSpace must not bind alt-0 or it would swallow the keystroke.
 
 # Help-menu search: fuzzy-find any menu item of the focused app. Clicking the real
 # Help menu (vs the "Show Help menu" system hotkey) reveals the auto-hidden menu bar
@@ -77,6 +78,7 @@ alt-shift-s = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main']     # reset messy layout
+b = ['balance-sizes', 'mode main']              # balance split sizes (was alt-0)
 f = ['layout floating tiling', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
 h = ['join-with left', 'mode main']
