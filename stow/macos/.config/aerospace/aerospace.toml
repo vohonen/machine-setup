@@ -5,6 +5,14 @@ exec-on-workspace-change = ['/bin/bash', '-c',
   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
+# Highlight the focused window with a subtle border (JankyBorders, FelixKratz/formulae).
+# AeroSpace draws no decorations itself; this makes the active window easy to spot among
+# several (e.g. many terminals in one workspace). Only the active window is bordered
+# (inactive_color is transparent). Tweak width / active_color to taste.
+after-startup-command = [
+  'exec-and-forget /opt/homebrew/bin/borders active_color=0xffd8dee9 inactive_color=0x00000000 width=5.0 style=round'
+]
+
 [gaps]
 inner.horizontal = 0
 inner.vertical = 0
