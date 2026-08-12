@@ -82,12 +82,14 @@ which latexmk tlmgr        # should resolve under /Library/TeX/texbin
   Ctrl for left-hand chords. Leave **Keyboard Shortcuts → Modifier Keys** at default (do NOT also
   set Caps→Esc there; Karabiner handles it).
 - **AeroSpace:** launch it once and grant **Accessibility** permission when prompted.
-- **Dropbox → Full Disk Access for the terminal:** Dropbox syncs to
-  `~/Library/CloudStorage/Dropbox` (it creates a `~/Dropbox` symlink to it). macOS blocks
-  terminal apps from reading that File Provider path until granted Full Disk Access. Add
-  **Alacritty** under **Privacy & Security → Full Disk Access**, then **fully quit and
-  relaunch** it (a running app won't pick up the grant; nvim launched from it inherits it).
-  Symptom without it: `ls ~/Dropbox` → "Operation not permitted" even though the files are fine.
+- **Dropbox → do NOT grant Full Disk Access:** Dropbox syncs to
+  `~/Library/CloudStorage/Dropbox` (it creates a `~/Dropbox` symlink to it), and macOS blocks
+  terminal apps from that File Provider path unless they have Full Disk Access. Leave it
+  ungranted: FDA is all-or-nothing, so it would also expose Messages, Mail, Contacts and
+  Safari cookies to anything running in the terminal, coding agents included.
+  The productivity vault lives at `~/vault` instead — a plain local path with no TCC
+  involvement, synced through its git remote rather than Dropbox.
+  Expected, not a bug: `ls ~/Dropbox` → "Operation not permitted".
 - **Skim → Settings → Sync** (for VimTeX inverse search, PDF→source):
   - enable **"Check for file changes"**
   - **Preset:** Custom

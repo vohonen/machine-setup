@@ -24,8 +24,11 @@ sketchybar --default \
 sketchybar --add event aerospace_workspace_change
 
 # One pill per workspace: number + icons of the apps living there.
-# front_app_switched keeps icons fresh after alt-shift-N moves (no ws change fires then).
-for ws in $(aerospace list-workspaces --all); do
+# Keep this list independent of AeroSpace's current runtime state: otherwise a
+# bar started before AeroSpace (or after a restart) can be created with only
+# the currently occupied workspace. front_app_switched keeps icons fresh after
+# alt-shift-N moves (no ws change fires then).
+for ws in 1 2 3 4 5 6 7; do
   sketchybar --add item "space.$ws" left \
     --set "space.$ws" \
       icon="$ws" \

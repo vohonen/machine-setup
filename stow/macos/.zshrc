@@ -25,3 +25,5 @@ export TEXMFHOME=$HOME/.texmf
 PROMPT='%F{green}[%n]%f %F{blue}%~%f $ '
 
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
+
+. "$HOME/.local/bin/env"
