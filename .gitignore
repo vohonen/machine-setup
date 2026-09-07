@@ -12,3 +12,5 @@ id_ed25519*
 
 # Claude Code session-local tooling config
 .claude/
+
+nvim.log
